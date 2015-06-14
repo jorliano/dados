@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.jortec.model.Cliente;
 
-@Service
+
 public class ArquivoJson {
   
 	public void criarArquivo(List<Cliente> lista){
@@ -43,7 +43,7 @@ public class ArquivoJson {
 				jsonObjectWrite.put("lista", jsonArray);
 				
 				try{
-					writeFile = new FileWriter("C:/Users/Jorliano/Desktop/dados.json");
+					writeFile = new FileWriter("novo.json");
 					//Escreve no arquivo conteudo do Objeto JSON
 					writeFile.write(jsonObjectWrite.toJSONString());
 					writeFile.close();
@@ -99,5 +99,8 @@ public class ArquivoJson {
       return null;
 
 	}	
-	
+	public static void main(String[] args) {
+		
+		System.out.println("novo.json");
+	}
 }

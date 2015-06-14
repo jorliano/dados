@@ -1,5 +1,7 @@
 package br.com.jortec.util;
 
+import java.io.Serializable;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
@@ -9,9 +11,8 @@ import org.springframework.stereotype.Component;
 *
 * @author Jorliano
 */
-@Component
-@Scope("request")
-public class Alerta {
+
+public class Alerta implements Serializable{
 	public static void info(String mensagem) {
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, mensagem, null));
 	}
