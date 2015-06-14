@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+<head jsf:id="head">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="jortec" />
+<meta name="author" content="jorliano" />
+
+<!-- Bootstrap -->
+<link href="#{request.contextPath}/css/bootstrap.css" rel="stylesheet"
+	type="text/css" />
+<link href="#{request.contextPath}/css/bootstrap.min.css"
+	rel="stylesheet" />
+<!--fonte de icones externa -->
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+
+<link href="#{request.contextPath}/css/stilo.css" rel="stylesheet"
+	type="text/css" />
+<!-- validar campos -->
+<link href="#{request.contextPath}/css/validate.css" rel="stylesheet"
+	type="text/css" />
+
+
+</head>
+<body jsf:id="body">
+	
+	<div class="main-content">
+		<section>
+			<div class="container-fluid container-padded">
+				<div class="row">
+					<div class="col-md-12 page-title">
+						<h2>Cadastro</h2>
+						<hr />
+					</div>
+				</div>
+			</div>
+			<div class="container-fluid container-padded">
+				<div class="row">
+				
+					<div class="col-md-12">
+						<div class="panel panel-plain">
+							<div class="panel-body">
+								<div class="panel panel-default m-bot0">
+									<div class="panel-body tab-content">
+										<form jsf:id="form" class="form-horizontal validate"
+											jsf:prependId="false">
+											<div class="tab-pane active" id="profile-settings">
+											    <div class="pull-right col-xs-8">
+                                                <h:messages id="msg" showDetail="false" style="position: absolute" 
+													errorClass="alert alert-danger " warnClass="alert alert-warning"
+													fatalClass="alert alert-danger" infoClass="alert alert-info" />   
+												
+                                                </div>
+												<h4>
+													<i class="fa fa-map-marker fa-2x"></i> Local
+												</h4>
+												
+                                                <hr />
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="nome">Nome do local</label>
+													
+													<div class="col-md-7">
+														<input type="text"
+															jsf:value="#{clienteBean.cliente.local}" required="true"
+															maxlength="50" class="form-control required maxlenght"
+															jsf:id="nome" jsf:label="Nome "  /> 
+															<span>Campo	obrigatorio com no maximo 50 caracter</span>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="endereco">Endereço</label>
+													<div class="col-md-7">
+														<input type="text" jsf:value="#{clienteBean.cliente.endereco}"
+															maxlength="50" required="true"
+															class="form-control required maxlenght" jsf:id="endereco" />
+														<span>Campo obrigatorio com no maximo 50 caracter</span>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="bairro">Bairro</label>
+													<div class="col-md-7">
+														<input type="text"
+															jsf:value="#{clienteBean.cliente.bairro}"
+															class="form-control required" jsf:id="bairro"
+															required="true" /> <span>Campo obrigatorio </span>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="cidade">Cidade</label>
+													<div class="col-md-7">
+														<input type="text"
+															jsf:value="#{clienteBean.cliente.cidade}" maxlength="50"
+															class="form-control required maxlenght" jsf:id="cidade"
+															required="true" /> 
+															<span>Campo obrigatorio com no maximo 50 caracter</span>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<div class="col-md-7 col-md-push-3">
+														<button jsf:id="bt" jsf:action="#{clienteBean.salvar}"
+															class="btn btn-primary">
+															Salvar <i class="fa fa-map-marker "></i>
+															<f:ajax execute="@form " render="@form :msg"
+																onevent="bt_lock" />
+														</button>
+														
+														<button jsf:action="#{clienteBean.deletar}" class="btn btn-danger pull-right" >
+															Voltar <i class="fa fa-undo"></i>
+														</button>
+
+													</div>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+
+	<!-- jQuery -->
+	<script
+		src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script type="text/javascript"
+		src="#{request.contextPath}/js/jquery.validate.js"></script>
+	<script type="text/javascript"
+		src="#{request.contextPath}/js/jquery.mask.js"></script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
