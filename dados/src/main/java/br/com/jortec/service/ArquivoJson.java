@@ -43,7 +43,7 @@ public class ArquivoJson {
 				jsonObjectWrite.put("lista", jsonArray);
 				
 				try{
-					writeFile = new FileWriter("novo.json");
+					writeFile = new FileWriter("/C:/Program Files/Apache Software Foundation/Tomcat 8.0/webapps/dados/novo.json");
 					//Escreve no arquivo conteudo do Objeto JSON
 					writeFile.write(jsonObjectWrite.toJSONString());
 					writeFile.close();
