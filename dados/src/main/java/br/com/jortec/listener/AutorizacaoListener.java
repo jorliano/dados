@@ -3,8 +3,10 @@ package br.com.jortec.listener;
 
 
 
+import javax.faces.application.NavigationHandler;
 import javax.faces.context.FacesContext;
 import javax.faces.event.PhaseEvent;
+import javax.faces.event.PhaseId;
 import javax.faces.event.PhaseListener;
 
 import br.com.jortec.controller.UsuarioLogado;
@@ -21,9 +23,9 @@ public class AutorizacaoListener implements PhaseListener{
 			System.out.println("estou na mesma pagina");
 			return;                                                                                                                                  
 		}
-				UsuarioLogado usuarioLogado =ctx.getApplication().evaluateExpressionGet(ctx, null, UsuarioLogado.class);
-		//UsuarioLogado usuarioLogado =ctx.getApplication().
-		//		evaluateExpressionGet(ctx,"#{usuarioLogado}", UsuarioLogado.class);
+				
+		UsuarioLogado usuarioLogado =ctx.getApplication().
+				evaluateExpressionGet(ctx,"#{usuarioLogado}", UsuarioLogado.class);
 	
 	   if(!usuarioLogado.isLogado() && !paginaAcessada.equals("/paginas/usuario/cadastro.xhtml")){
 	    	NavigationHandler handler = ctx.getApplication().getNavigationHandler();
