@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+
+
+<body>
+	<ui:composition template="/sistema.xhtml">
+		<ui:define name="titulo">
+			<i class="fa fa-angle-right"></i> ocorrrencias</ui:define>
+		<ui:define name="conteudo">
+			<t:saveState value="#{emergenciaBean.emergencia}"></t:saveState>
+		
+		<h:form id="form" prependId="false">
+		
+		 <div class="row-fluid">					
+				<div class="input-group col-sm-4 col-sm-offset-8   ">
+					<input type="text" jsf:value="#{nome}"
+						class="form-control" /> <span class="hide">Busca por nome</span>
+					<span class="input-group-btn">
+				     <button type="submit" class="btn btn-primary"
+						jsf:action="#{emergenciaBean.busca}">
+						<i class="fa fa-search"></i>
+							<f:ajax execute="@form" render="@form"></f:ajax>
+				    </button>
+					</span>
+				</div>
+		</div>
+		<div class="table-responsive" style="margin-top: 10px">
+		 <h:dataTable id="tabelaOcorrencias" var="list" 
+					value="#{emergenciaBean.lista}"
+					rendered="#{not empty emergenciaBean.lista}"
+					styleClass="table  table-hover" rows="20">
+		  <h:column>
+		    <f:facet name="header">Id</f:facet>
+              #{list.id}              
+          </h:column>
+		  <h:column>
+			<f:facet name="header">Nome</f:facet>
+              #{list.cliente.nome}                                                                   
+          </h:column>
+		  <h:column>
+			<f:facet name="header">Tipo</f:facet>
+              #{list.tipo}              
+          </h:column>
+		  <h:column>
+			<f:facet name="header">Localização</f:facet>
+              <a href="https://www.google.com.br/maps/place/#{list.latitude}#{list.longitude}" target="_blank" >Localização</a>
+          </h:column>		       
+		  <h:column>
+			<f:facet name="header">Data</f:facet>
+			#{list.data}	            
+          </h:column>
+          <h:column>
+			<f:facet name="header">Hora</f:facet>
+			#{list.hora}	            
+          </h:column>
+		  <h:column>
+		 
+			     <f:facet name="header">Ações</f:facet>	                   
+                 
+						<div class="pull-right">
+							<button jsf:id="bt_editar" jsf:action="#{emergenciaBean.chamaFotos}" type="submit"
+								class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Imagens">
+								<i class="fa fa-picture-o"></i>
+								<f:setPropertyActionListener
+									target="#{emergenciaBean.emergencia}" value="#{list}" />								
+							</button>											
+							&nbsp;	
+							<button jsf:id="bt_deletar"
+								jsf:action="#{emergenciaBean.deletar}" class="btn btn-danger"
+								onclick="return confirm('Tem certeza que quer deletar ?')"
+								data-toggle="tooltip" data-placement="top" title="Deletar">
+								<i class="fa fa-trash-o"></i>
+								<f:setPropertyActionListener
+									target="#{emergenciaBean.emergencia}" value="#{list}" />
+								<f:ajax render="@form" />
+							</button>
+						</div>
+					</h:column>
+		</h:dataTable>
+		</div>
+		<!-- final da tabela -->
+
+        <!-- Modal -->
+	<div id="myModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+	
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Modal Header</h4>
+	      </div>
+	      <div class="modal-body">
+	        <p>Some text in the modal.</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	
+	  </div>
+	</div>			
+				
+		</h:form>
+
+
+
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

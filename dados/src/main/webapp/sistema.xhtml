@@ -1,0 +1,312 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	<meta  HTTP-EQUIV="refresh" content="60"/>
+	<title>MonitoramentoWeb- por Jorliano</title>
+	<link href="favicon1.ico" rel="icon" type="image/x-icon" />
+
+	<!-- Bootstrap -->
+	<link href="#{request.contextPath}/css/bootstrap.css" rel="stylesheet"
+		type="text/css" />
+	<!--fonte de icones externa -->
+	<link rel="stylesheet"
+		href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/1.5.2/css/ionicons.min.css" />
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/1.5.2/css/ionicons.css" />
+
+	<link href="#{request.contextPath}/css/stiloPainel.css"
+		rel="stylesheet" type="text/css" />
+	<link href="#{request.contextPath}/css/ionicons.min.css"
+		rel="stylesheet" type="text/css" />
+	<link href="#{request.contextPath}/css/daterranger.css"
+		rel="stylesheet" type="text/css" />
+	<link href="#{request.contextPath}/css/stilo.css" rel="stylesheet"
+		type="text/css" />
+	<!-- validar campos -->
+	<link href="#{request.contextPath}/css/validate.css" rel="stylesheet"
+		type="text/css" />
+</h:head>
+<h:body>
+	<header> <nav class="navbar navbar-default navbar-transparent">
+	<div class="container" id="nav-container">
+		<div class="navbar-header">
+			<button class="navbar-toggle navbar-toggle-settings"
+				data-target="#top-navbar" data-toggle="collapse" type="button">
+				<span class="sr-only">Toggle navigation</span> <i
+					class="fa fa-user"></i>
+			</button>
+			<a class="navbar-brand logo" href="#"> <img
+				src="#{request.contextPath}/imagens/logo.png" alt="App logo"
+				width="100" /></a>
+			<div class="navbar-side-menu-toggle">
+				<button class="toggle-btn" type="button">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+			</div>
+		</div>
+		<div class="collapse navbar-collapse" id="top-navbar">			
+			<ul class="nav navbar-nav navbar-right" style="margin-top: 2%">
+				<h:form>
+					<li><img src="#{request.contextPath}/imagens/adm/adm.png"
+						class="user-settings-pic" /> #{usuarioLogado.nomeLogado} | <h:commandLink
+							value="Sair" action="#{usuarioLogado.desloga}" /></li>
+				</h:form>
+			</ul>
+		</div>
+	</div>
+	</nav> </header>
+	<div class="container" id="content-container">
+		<div class="content-wrapper">
+			<div class="row">
+				<div class="side-nav-content">
+					<div class="left-side-wrapper">
+						<div class="left-side sticky-left-side">
+							<div class="left-side-inner">
+								<ul class="nav nav-pills nav-stacked custom-nav ">
+									<li><a href="/MonitoramentoWeb/sistema.xhtml"> <i
+											class="fa fa-tachometer"></i><span>Sistema</span></a></li>
+									<li><a
+										href="/MonitoramentoWeb/paginas/emergencia/emergencia.xhtml"><i
+											class="fa fa-ambulance"></i><span>Emergencias</span></a></li>
+									<li><a
+										href="/MonitoramentoWeb/paginas/cliente/cliente.xhtml"> <i
+											class="fa fa-users"></i><span>Clientes</span></a></li>
+									<li><a
+										href="/MonitoramentoWeb/paginas/usuario/usuario.xhtml"><i
+											class="fa fa-user-secret"></i><span>Usuarios</span></a></li>
+									<li><a
+										href="/MonitoramentoWeb/paginas/usuario/graficocliente.xhtml"><i
+											class="fa fa-bar-chart"></i><span>Grafico</span></a></li>
+									<li class="nav-header">Configurações</li>
+									<li><a href="/MonitoramentoWeb/configuracao.xhtml"><i
+											class="fa fa-wrench"></i><span>Sistema</span></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="main-content-wrapper">
+						<div class="container-fluid container-padded dash-controls">
+							<div class="row">
+								<div class="col-md-12">
+									<div class="pull-right">
+										<div id="reportrange">
+											<p:ajaxStatus>
+												<f:facet name="start">
+													<img src="#{request.contextPath}/imagens/load/loader.gif"
+														width="50" height="50" style="margin-top: -60%" />
+												</f:facet>
+												<f:facet name="complete">
+													<img src="" />
+												</f:facet>
+											</p:ajaxStatus>
+										</div>
+									</div>
+									<h:messages id="msg"
+										style="width: 55%;position: absolute;margin-left: 45%;margin-top: -7%; list-style-type:none;"
+										showDetail="false" errorClass="callout callout-danger "
+										warnClass="callout callout-warning"
+										fatalClass="callout callout-success" infoClass="callout callout-info" />																			
+									<div>
+										<h5>
+											sistema
+											<ui:insert name="titulo"></ui:insert>
+										</h5>
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+						<div class="main-content">
+							<section>
+							<div class="container-fluid container-padded">
+								<ui:insert name="conteudo">
+									<div class="col-lg-3 col-md-6 ">
+										<div class="panel panel-red ">
+											<div class="panel-heading">
+												<div class="row">
+													<div class="col-xs-3">
+														<i class="fa fa-ambulance fa-5x"></i>
+													</div>
+													<div class="col-xs-9 text-right">
+														<div class="huge">100</div>
+														<div>Ocorencias</div>
+													</div>
+												</div>
+											</div>
+											<a href="/MonitoramentoWeb/paginas/emergencia/emergencia.xhtml">
+												<div class="panel-footer">
+													<span class="pull-left">Veja Detalhes</span> <span
+														class="pull-right"><i
+														class="glyphicon glyphicon-circle-arrow-right"></i></span>
+													<div class="clearfix"></div>
+												</div>
+											</a>
+										</div>
+									</div>
+									<div class="col-lg-3 col-md-6 wow fadeInUp">
+										<div class="panel panel-primary">
+											<div class="panel-heading">
+												<div class="row">
+													<div class="col-xs-3">
+														<i class="fa fa-users fa-5x"></i>
+													</div>
+													<div class="col-xs-9 text-right">
+														<div class="huge">15</div>
+														<div>Clientes</div>
+													</div>
+												</div>
+											</div>
+											<a href="/MonitoramentoWeb/paginas/cliente/cliente.xhtml">
+												<div class="panel-footer">
+													<span class="pull-left">Veja Detalhes</span> <span
+														class="pull-right"><i
+														class="glyphicon glyphicon-circle-arrow-right"></i></span>
+													<div class="clearfix"></div>
+												</div>
+											</a>
+										</div>
+									</div>
+									<div class="col-lg-3 col-md-6 wow fadeInDown">
+										<div class="panel  panel-green ">
+											<div class="panel-heading">
+												<div class="row">
+													<div class="col-xs-3">
+														<i class="fa fa-user-secret fa-5x"></i>
+													</div>
+													<div class="col-xs-9 text-right">
+														<div class="huge">5</div>
+														<div>Administradores</div>
+													</div>
+												</div>
+											</div>
+											<a href="/MonitoramentoWeb/paginas/usuario/usuario.xhtml">
+												<div class="panel-footer">
+													<span class="pull-left">Veja Detalhes</span> <span
+														class="pull-right"><i
+														class="glyphicon glyphicon-circle-arrow-right"></i></span>
+													<div class="clearfix"></div>
+												</div>
+											</a>
+										</div>
+									</div>
+									<div class="col-lg-3 col-md-6 wow fadeInLeft">
+										<div class="panel panel-yellow ">
+											<div class="panel-heading">
+												<div class="row">
+													<div class="col-xs-3">
+														<i class="fa fa-bar-chart fa-5x"></i>
+													</div>
+													<div class="col-xs-9 text-right">
+														<div class="huge">2</div>
+														<div>Grafico</div>
+													</div>
+												</div>
+											</div>
+											<a
+												href="/MonitoramentoWeb/paginas/usuario/graficocliente.xhtml">
+												<div class="panel-footer">
+													<span class="pull-left">Veja Detalhes</span> <span
+														class="pull-right"><i
+														class="glyphicon glyphicon-circle-arrow-right"></i></span>
+													<div class="clearfix"></div>
+												</div>
+											</a>
+										</div>
+									</div>
+									<!-- /.row -->
+								</ui:insert>
+
+							</div>
+
+
+							</section>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 	<footer>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">				
+				<ul class="list-inline">
+					<li><small> Criado pod Jorliano</small></li>					
+					<li><small><a href="#">Termos de uso</a></small></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	</footer> -->
+
+	
+	<!-- jQuery -->
+	<script
+		src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script type="text/javascript"
+		src="#{request.contextPath}/js/jquery.validate.js"></script>	
+	<!-- Bootstrap -->
+	<script type="text/javascript"
+		src="#{request.contextPath}/js/bootstrap.min.js"></script>
+
+
+	<script type="text/javascript"
+		src="#{request.contextPath}/js/slimscroll.min.js"></script>
+	<script type="text/javascript"
+		src="#{request.contextPath}/js/datarenger.js"></script>
+	<script type="text/javascript"
+		src="#{request.contextPath}/js/tabledrop.js"></script>
+	<script type="text/javascript" src="/js/float.js">
+	</script>
+	<script type="text/javascript"
+		src="#{request.contextPath}/js/float.tootpit.js"></script>
+	<script type="text/javascript"
+		src="#{request.contextPath}/js/float.resize.js"></script>
+	
+ 	<script type="text/javascript"
+		src="#{request.contextPath}/js/float.stacke.js"></script>
+	<script type="text/javascript"
+		src="#{request.contextPath}/js/sparklines.js"></script>
+	<script type="text/javascript"
+		src="#{request.contextPath}/js/scripte.js"></script>
+
+	<script type="text/javascript"
+		src="#{request.contextPath}/js/jquery.maskedinput.min.js"></script>
+	<script type="text/javascript"
+	   src="#{request.contextPath}/js/Chart.min.js"></script>
+
+
+	<script>
+	jQuery(function($){
+		$(".cpf").mask("999.999.999-99");   
+  	    $(".telefone").mask("(99) 9999-9999");
+  	    $(".cep").mask("99999-999");
+  	    $(".data").mask("99/99/9999");
+  	    //$(".ip").mask("999.999.999.999");
+    });
+
+	
+    $('#modal').on('show.bs.modal', function (event) {        	
+    	  var modal = $(this);    	 
+    	  modal.find('.modal-body input').val('imagem');
+ 	});
+   
+    
+
+</script>
+    <ui:insert name="javascript"></ui:insert>
+
+</h:body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+
+
+<body>
+	
+	<ui:composition template="/sistema.xhtml">
+		<ui:define name="titulo">
+			<i class="fa fa-angle-right"></i>  grafico  </ui:define>
+		<ui:define name="conteudo">
+          <div class="main-content">
+				<section>
+				<div class="container-fluid container-padded">
+					<div class="row">
+						<div class="col-md-12 page-title">
+							<h2>Grafico de Ocorrências</h2>
+							<hr />
+						</div>
+					</div>
+				</div>
+				<div class="container-fluid container-padded">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="panel panel-plain">
+								<div class="panel-body">									
+									<div class="panel panel-default m-bot0">
+										<div class="panel-body tab-content">										
+											<canvas id="myChart" width="600" height="400"></canvas>			
+			                                <div id="js-legend" class="chart-legend"></div>
+											
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				</section>
+			</div>
+            <!-- Modal Confirm -->
+			
+			
+
+
+		</ui:define>
+		<ui:define name="javascript">
+
+			<script type="text/javascript">
+				var data = [ {
+					value : 20,
+					color : "#09355C",
+					label : "Crimes"
+				}, {
+					value : 10,
+					color : "#CBCBCB",
+					label : "Incêndios"
+				}, {
+					value : 50,
+					color : "#B61B12",
+					label : "Acidentes"
+				} ];
+
+				var options = {
+					segmentShowStroke : false,
+					animateRotate : true,
+					animateScale : false,
+					percentageInnerCutout : 50,		
+					responsive:true             
+					
+				}
+
+				var ctx = document.getElementById("myChart").getContext("2d");
+
+				var myChart = new Chart(ctx).Doughnut(data, options);
+
+				// Note - tooltipTemplate is for the string that shows in the tooltip
+
+				// legendTemplate is if you want to generate an HTML legend for the chart and use somewhere else on the page
+
+				// e.g:
+
+				document.getElementById('js-legend').innerHTML = myChart
+						.generateLegend();
+			</script>
+
+		</ui:define>
+	</ui:composition>
+</body>
+
+
+
+
+
+
+
+
+</html>
+
+			
+
+
+
+	
+	                        
+	          
+
+
