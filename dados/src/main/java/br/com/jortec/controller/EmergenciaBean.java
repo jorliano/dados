@@ -54,7 +54,7 @@ public class EmergenciaBean {
 	
 	public String deletar() {
 		String jsonDados = new HttpConnection()
-		.getGetHttp("http://localhost:8080/RESTfulExample/rest/ClienteWeb/deletarEmergencia/"+emergencia.getId());
+		.getGetHttp("http://localhost:8090/RESTfulExample/rest/ClienteWeb/deletarEmergencia/"+emergencia.getId());
 		
 		logger.info("url para deletar :"+"http://localhost:8080/RESTfulExample/rest/ClienteWeb/deletarEmergencia/"+emergencia.getId());
 		alerta.info(jsonDados, true);
@@ -90,7 +90,7 @@ public class EmergenciaBean {
 	public List listarDados() {
 
 		String jsonDados = new HttpConnection()
-				.getGetHttp("http://localhost:8080/RESTfulExample/rest/ClienteWeb/listarEmergencias");
+				.getGetHttp("http://localhost:8090/RESTfulExample/rest/ClienteWeb/listarEmergencias");
 		logger.info("Dados recebidos " + jsonDados);
 
 		try {

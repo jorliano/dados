@@ -46,7 +46,7 @@ public class ClienteBean implements Serializable {
 
 	public String deletar() {
 		String jsonDados = new HttpConnection()
-		.getGetHttp("http://localhost:8080/RESTfulExample/rest/ClienteWeb/deletarCliente/"+cliente.getId());
+		.getGetHttp("http://localhost:8090/RESTfulExample/rest/ClienteWeb/deletarCliente/"+cliente.getId());
 		
 		alerta.info(jsonDados, true);
 		return "usuario";
@@ -75,7 +75,7 @@ public class ClienteBean implements Serializable {
 	public List listarDados() {
 
 		String jsonDados = new HttpConnection()
-				.getGetHttp("http://localhost:8080/RESTfulExample/rest/ClienteWeb/listarClientes");
+				.getGetHttp("http://localhost:8090/RESTfulExample/rest/ClienteWeb/listarClientes");
 		logger.info("Dados recebidos " + jsonDados);
 
 		try {

@@ -53,7 +53,8 @@ public class UsuarioBean implements Serializable {
 		if (usuario.getId() == 0) {
 			resposta = new HttpConnection()
 					.getPostHttp(
-							"http://localhost:8080/RESTfulExample/rest/ClienteWeb/cadastrar",
+							//"http://ciopsapp.ddns.net:8090/RESTfulExample/rest/ClienteWeb/cadastrar",
+							"http://localhost:8090/RESTfulExample/rest/ClienteWeb/cadastrar",
 							"cadastrar", gson.toJson(usuario));
             if(!usuarioLogado.isLogado()){
             	return "/index?faces-redirect=true";
@@ -61,7 +62,7 @@ public class UsuarioBean implements Serializable {
 		} else {
 			resposta = new HttpConnection()
 					.getPostHttp(
-							"http://localhost:8080/RESTfulExample/rest/ClienteWeb/editar",
+							"http://localhost:8090/RESTfulExample/rest/ClienteWeb/editar",
 							"editar", gson.toJson(usuario));
 
 		}
@@ -72,11 +73,11 @@ public class UsuarioBean implements Serializable {
 
 	public String deletar() {
 		String resposta = new HttpConnection().getGetHttp(
-				"http://localhost:8080/RESTfulExample/rest/ClienteWeb/deletar/"+ usuario.getId());
+				"http://localhost:8090/RESTfulExample/rest/ClienteWeb/deletar/"+ usuario.getId());
                 logger.info("deletar url "+"http://localhost:8080/RESTfulExample/rest/ClienteWeb/deletar/"+ usuario.getId());
 		alerta.info(resposta, true);
 
-		return "usuario";
+		return "usuario?faces-redirect=true";
 	}
 
 	public void busca() {
@@ -118,7 +119,7 @@ public class UsuarioBean implements Serializable {
 	public List listarDados() {
 		// Solicitação ao servidor
 		String jsonDados = new HttpConnection()
-				.getGetHttp("http://localhost:8080/RESTfulExample/rest/ClienteWeb/listarUsuarios");
+				.getGetHttp("http://localhost:8090/RESTfulExample/rest/ClienteWeb/listarUsuarios");
 
 		logger.info("JsonRecebido " + jsonDados);
 

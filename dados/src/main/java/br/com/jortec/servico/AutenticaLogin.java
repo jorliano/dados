@@ -26,7 +26,7 @@ public class AutenticaLogin {
 		usuario.setSenha(senha);		
 		try{
 			String resposta = new HttpConnection().getPostHttp(
-					"http://localhost:8080/RESTfulExample/rest/ClienteWeb/logar",
+					"http://localhost:8090/RESTfulExample/rest/ClienteWeb/logar",
 					"logar", gson.toJson(usuario));
 			
 			logger.info("autenticaLogUsuario chamado " + resposta);			
